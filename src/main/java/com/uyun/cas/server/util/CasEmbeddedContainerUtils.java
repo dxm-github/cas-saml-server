@@ -1,4 +1,4 @@
-package org.tis.demo.cas.server;
+package com.uyun.cas.server.util;
 
 import org.apereo.cas.util.spring.boot.AbstractCasBanner;
 import org.apereo.cas.util.spring.boot.DefaultCasBanner;

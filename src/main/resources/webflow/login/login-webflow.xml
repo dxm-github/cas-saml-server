@@ -5,9 +5,13 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <action-state id="initializeLoginForm">
-        <evaluate expression="initializeLoginAction" />
-        <transition on="success" to="viewLoginForm"/>
+        <evaluate expression="myInitializeLoginAction" />
+<!--        <transition on="success" to="viewLoginForm"/>-->
+        <transition on="success" to="createTicketGrantingTicket"/>
+        <transition on="error" to="myRedirectView"/>
     </action-state>
+
+    <end-state id="myRedirectView" view="externalRedirect:http://10.1.152.175"/><!--uyun login 登陆地址-->
 
     <view-state id="viewLoginForm" view="casLoginView" model="credential">
         <binder>

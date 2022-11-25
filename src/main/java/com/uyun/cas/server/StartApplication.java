@@ -1,6 +1,6 @@
-package org.tis.demo.cas.server.web;
+package com.uyun.cas.server;
 
-import org.tis.demo.cas.server.CasEmbeddedContainerUtils;
+import com.uyun.cas.server.util.CasEmbeddedContainerUtils;
 import lombok.NoArgsConstructor;
 import org.apereo.cas.configuration.CasConfigurationProperties;
 import org.springframework.boot.Banner;
@@ -24,11 +24,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.uyun.cas.server.config.CasWebApplicationContext;
 
 import java.util.Map;
 
 /**
- * This is {@link CasWebApplication}.
+ * This is {@link StartApplication}.
  *
  * @author Misagh Moayyed
  * @since 5.0.0
@@ -54,8 +55,8 @@ import java.util.Map;
 @EnableScheduling
 @NoArgsConstructor
 @Slf4j
-@ComponentScan(basePackages={"org.jasig.cas"})
-public class CasWebApplication {
+@ComponentScan(basePackages={"org.jasig.cas","com.uyun.cas.server"})
+public class StartApplication {
 
     /**
      * Main entry point of the CAS web application.
@@ -65,7 +66,7 @@ public class CasWebApplication {
     public static void main(final String[] args) {
         final Map<String, Object> properties = CasEmbeddedContainerUtils.getRuntimeProperties(Boolean.TRUE);
         final Banner banner = CasEmbeddedContainerUtils.getCasBannerInstance();
-        new SpringApplicationBuilder(CasWebApplication.class)
+        new SpringApplicationBuilder(StartApplication.class)
                 .banner(banner)
                 .web(true)
                 .properties(properties)

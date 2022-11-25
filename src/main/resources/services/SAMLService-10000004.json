@@ -1,0 +1,27 @@
+{
+  "@class" : "org.apereo.cas.support.saml.services.SamlRegisteredService",
+  "serviceId" : "http://localhost:8080/saml2/service-provider-metadata/one",
+  "name" : "SAMLService",
+  "id" : 10000004,
+  "metadataLocation" : "classpath:sp/localhost_sp.xml",
+  "requiredNameIdFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",/*不知道有什么用,idaas默认使用1.1*/
+
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"/*配置返回的参数，可以使用ReturnAllAttributeReleasePolicy全都返回，attributeReleasePolicy部分返回*/
+  },
+
+  "signingSignatureAlgorithms": [
+    "java.util.ArrayList",
+    [
+      "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+      "http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"
+    ]
+  ],
+  "signingSignatureReferenceDigestMethods": [
+    "java.util.ArrayList",
+    [
+      "http://www.w3.org/2001/04/xmlenc#sha256"
+    ]
+  ]
+
+}

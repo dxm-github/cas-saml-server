@@ -1,4 +1,4 @@
-package org.tis.demo.cas.server.web;
+package com.uyun.cas.server.config;
 
 import org.apereo.cas.CasEmbeddedValueResolver;
 import org.springframework.beans.factory.config.BeanPostProcessor;

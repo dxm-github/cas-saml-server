@@ -1,6 +1,7 @@
-package org.tis.demo.cas.server.web;
+package com.uyun.cas.server.config;
 
-import org.tis.demo.cas.server.CasEmbeddedContainerUtils;
+import com.uyun.cas.server.StartApplication;
+import com.uyun.cas.server.util.CasEmbeddedContainerUtils;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
@@ -18,7 +19,7 @@ public class CasWebApplicationServletInitializer extends SpringBootServletInitia
     protected SpringApplicationBuilder configure(final SpringApplicationBuilder builder) {
         final Map<String, Object> properties = CasEmbeddedContainerUtils.getRuntimeProperties(Boolean.FALSE);
         return builder
-                .sources(CasWebApplication.class)
+                .sources(StartApplication.class)
                 .properties(properties)
                 .banner(CasEmbeddedContainerUtils.getCasBannerInstance());
     }

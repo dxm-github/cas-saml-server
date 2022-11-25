@@ -1,14 +1,24 @@
-# cas-server
-cas-server based on sprint boot (cas version 5.3.16)
-
-## 说明
-main方法启动，非overlay模式，无需外置tomcat 
-
-默认用户名密码：`casuser::Mellon`
-
-该demo中默认关闭了ssl，如需开启，可调整如下`application.properties`里配置
+build
 ```
-#server.ssl.key-store=file:/etc/cas/thekeystore
-#server.ssl.key-store-password=changeit
-#server.ssl.key-password=changeit
+mvn clean package
 ```
+
+启动
+```shell
+nohup java -jar -Dcas.authn.samlIdp.metadata.location=file:/opt/uyun/cas-saml/saml cas-server-1.0-SNAPSHOT.jar &
+```
+停止
+```shell
+ps -ef|grep cas-server-1.0-SNAPSHOT.jar
+kill -15 {pid}
+```
+
+debug启动
+```shell
+java -jar -Dcas.authn.samlIdp.metadata.location=file:/opt/uyun/cas-saml/saml -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8444 cas-server-1.0-SNAPSHOT.jar
+```
+
+# Requirements
+
+* JDK 1.8+
+* springframework 4

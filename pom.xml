@@ -6,12 +6,12 @@
     <groupId>cas</groupId>
     <artifactId>cas-server</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
-    <name>cas-server</name>
+    <packaging>jar</packaging>
+    <name>cas-saml-server</name>
     <description>cas server for Spring Boot</description>
 
     <properties>
-        <cas.version>5.3.16</cas.version>
+        <cas.version>5.3.9</cas.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -107,6 +107,21 @@
         </dependency>
         <dependency>
             <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-authentication-api</artifactId>
+            <version>${cas.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-services</artifactId>
             <version>${cas.version}</version>
             <exclusions>
@@ -183,6 +198,21 @@
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-core-web</artifactId>
+            <version>${cas.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-web-api</artifactId>
             <version>${cas.version}</version>
             <exclusions>
                 <exclusion>
@@ -301,21 +331,21 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-oauth-webflow</artifactId>
-            <version>${cas.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-slf4j-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apereo.cas</groupId>-->
+<!--            <artifactId>cas-server-support-oauth-webflow</artifactId>-->
+<!--            <version>${cas.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-devtools</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.logging.log4j</groupId>-->
+<!--                    <artifactId>log4j-slf4j-impl</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-person-directory</artifactId>
@@ -472,7 +502,23 @@
 
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-oidc</artifactId>
+            <artifactId>cas-server-support-saml-idp</artifactId>
+            <version>${cas.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-saml-idp-core</artifactId>
             <version>${cas.version}</version>
             <exclusions>
                 <exclusion>
@@ -486,6 +532,40 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-webflow-api</artifactId>
+            <version>${cas.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-devtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!--
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-oidc</artifactId>
+                    <version>${cas.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-devtools</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>org.apache.logging.log4j</groupId>
+                            <artifactId>log4j-slf4j-impl</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+        -->
+        <dependency>
             <groupId>com.fasterxml</groupId>
             <artifactId>classmate</artifactId>
             <version>1.3.4</version>
@@ -494,13 +574,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>1.5.8.RELEASE</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.eclipse.jetty.websocket</groupId>
@@ -656,15 +734,67 @@
     </dependencies>
 
     <build>
-        <finalName>cas-server</finalName>
         <plugins>
+            <!--打包jar-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <mainClass>com.uyun.cas.server.StartApplication</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>./resources/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
+            </plugin>
+
+            <!--拷贝依赖 copy-dependencies-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/lib/
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--拷贝saml资源文件 -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/saml</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/saml</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
